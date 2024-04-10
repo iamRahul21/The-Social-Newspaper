@@ -3,21 +3,21 @@ function fetchAndDisplayAlbums() {
         url: 'https://jsonplaceholder.typicode.com/albums',
         method: 'GET',
         success: function (response) {
-            const recentPostsDiv = document.getElementById('recent-posts');
-            recentPostsDiv.innerHTML = '';
+            const recentAlbumDiv = document.getElementById('recent-posts');
+            recentAlbumDiv.innerHTML = '';
 
             response.forEach(function (album) {
                 const albumElement = document.createElement('div');
                 albumElement.classList.add('items');
                 albumElement.innerHTML = `
-                        <h3>Title: ${album.title}</h2>
+                        <h1>Title: ${album.title}</h1>
                         <h4>User ID: ${album.userId}</h4>
                     `;
-                recentPostsDiv.appendChild(albumElement);
+                recentAlbumDiv.appendChild(albumElement);
             });
 
             document.getElementById('recent-photos').style.display = 'none';
-            recentPostsDiv.style.display = 'block';
+            recentAlbumsDiv.style.display = 'block';
         },
         error: function (error) {
             console.error('Error fetching albums:', error);
