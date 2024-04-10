@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script type="module" src="../JS/infinite-photo.js"></script>
+    <script type="module" src="../JS/user.js"></script>
+    <script type="module" src="../JS/posts.js"></script>
+    <script type="module" src="../JS/photos.js"></script>
+    <script type="module" src="../JS/albums.js"></script>
+    <title>The Social Newspaper</title>
+</head>
+
+<body>
+    <div class="home-grid-div">
+        <div id="nav-bar-div">
+            <div id="heading">The Social Newspaper</div>
+            <hr class="horizontal-line-1">
+            <hr class="horizontal-line-2">
+            <div id="nav">
+                <div id="date"></div>
+                <div id="time"></div>
+                <div id="home">Home</div>
+                <div id="users">Users</div>
+                <div id="user-container" class="hidden">
+                    <div id="user-header">Users</div>
+                    <div id="user-list"></div>
+                </div>
+                <div id="album">Albums</div>
+                <div id="posts">Posts</div>
+                <div id="todos">Todos</div>
+            </div>
+            <hr class="horizontal-line-3">
+            <hr class="horizontal-line-4">
+        </div>
+        <div id="recent">
+            <div id="recent-photos"></div>
+            <div id="recent-posts" class="owl-carousel custom-carousel owl-theme"></div>
+        </div>
+    </div>
+</body>
+<script>
+    function updateDateTime() {
+        var currentDate = new Date();
+
+        var formattedDate = currentDate.toLocaleDateString('en-GB');
+        var formattedTime = currentDate.toLocaleTimeString();
+
+        document.getElementById("date").textContent = "Date:" + formattedDate;
+        document.getElementById("time").textContent = formattedTime;
+    }
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+
+    document.addEventListener('click', function (event) {
+        const userContainer = document.getElementById('user-container');
+        const usersDiv = document.getElementById('users');
+
+        if (event.target !== usersDiv && !userContainer.contains(event.target)) {
+            userContainer.classList.add('hidden');
+        }
+    });
+
+    document.getElementById('users').addEventListener('click', function (event) {
+        event.stopPropagation();
+        document.getElementById('user-container').classList.toggle('hidden');
+    });
+
+    document.getElementById("home").addEventListener("click", function () {
+        if (window.location.pathname !== '/home.html') {
+            window.location.href = 'home.html';
+        }
+    });
+</script>
+</html>
+<!-- <div id="user-div">
+            <div id="user-header">Users</div>
+            <br>
+        </div> -->
